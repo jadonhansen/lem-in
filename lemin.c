@@ -6,11 +6,21 @@
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 11:10:39 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/22 11:10:52 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/08/23 11:45:30 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lemin.h"
+
 int		main(void)
 {
-	
+	char	*line;
+
+	while (get_next_line(0, line) > 0)
+	{
+		if (line)
+			error_checks(line);
+		else
+			write(1, "Error\n", 6);
+	}
 }
