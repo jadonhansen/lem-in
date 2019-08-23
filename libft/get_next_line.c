@@ -6,12 +6,11 @@
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:28:55 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/27 16:43:39 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/08/23 11:17:58 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "libft/libft.h"
+#include "libft.h"
 
 t_list	*ft_file(int fd, t_list **file)
 {

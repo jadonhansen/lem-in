@@ -6,7 +6,7 @@
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 15:09:10 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/15 13:37:12 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/08/23 11:18:03 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define RED "\033[31m"
 # define YELLOW "\033[33m"
 # define CYAN "\033[36m"
-
+# define BUFF_SIZE 1000
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -123,6 +123,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 */
 
 char				*ft_strndup(const char *s1, size_t n);
+int					get_next_line(const int fd, char **line);
 
 /*
 **Extra used in push_swap
