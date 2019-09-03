@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_word_count.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_nl.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 16:03:11 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/10 16:11:05 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:36:12 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/08/02 10:56:36 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Outputs integer `n` to the standard output. Uses ft_putnbr_fd, passing 1 as
+** the file descriptor. Puts a newline after printing the number.
+*/
+
 #include "libft.h"
 
-int		ft_word_count(char const *s, char c, int index)
+void	ft_putnbr_nl(int n)
 {
-	int i;
-
-	i = 0;
-	if (!(s[index]))
-		return (0);
-	while (s[index] == c)
-		index++;
-	while (s[index] != '\0' && s[index] != c)
-	{
-		index++;
-		i = 1;
-	}
-	return (i + ft_word_count(s, c, index));
+	ft_putnbr_fd(n, 1);
+	ft_putendl("");
 }

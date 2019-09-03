@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 11:55:36 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/11 12:01:46 by jhansen          ###   ########.fr       */
+/*   Created: 2019/06/03 10:02:12 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/06 09:12:22 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Adds a new node to the beginning of an existing list. `*new` is the list to
+** add, `**alst` is a pointer to the head of the list.
+*/
 
 #include "libft.h"
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {
-	if (new != NULL && alst != NULL)
-	{
-		new->next = *alst;
-		*alst = new;
-	}
+	new->next = *alst;
+	*alst = new;
 }

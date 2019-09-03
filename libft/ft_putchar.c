@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 11:36:00 by jhansen           #+#    #+#             */
-/*   Updated: 2019/05/29 12:03:00 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:35:13 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 16:57:31 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Outputs character `c` to the standard output. Uses ft_putchar_fd, passing
+** 1 as the file descriptor.
+*/
 
 #include "libft.h"
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	ft_putchar_fd(c, 1);
 }

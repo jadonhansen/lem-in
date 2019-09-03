@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_word_len.c                                      :+:      :+:    :+:   */
+/*   ft_putendl_col_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 16:03:47 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/10 16:10:50 by jhansen          ###   ########.fr       */
+/*   Created: 2019/07/02 10:32:25 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/07/02 10:32:31 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_word_len(char const *s, char c, int index)
+void	ft_putendl_col_fd(char *colour, char *str, int fd)
 {
-	int i;
-
-	i = 0;
-	while (s[index] == c)
-		index++;
-	while (s[index] != c && s[index] != '\0')
-	{
-		i++;
-		index++;
-	}
-	return (i);
+	ft_putstr_fd(colour, fd);
+	ft_putendl_fd(str, fd);
+	ft_putstr_fd(RESET, fd);
 }

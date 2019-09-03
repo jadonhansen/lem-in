@@ -3,36 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/15 11:38:22 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/15 12:28:56 by jhansen          ###   ########.fr       */
+/*   Created: 2019/07/05 09:47:01 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/07/19 09:12:26 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_atol(char *s)
+/*
+** Converts an ascii character string into a long number, able to handle
+** positive or negative numbers. (Base 10)
+*/
+
+long	ft_atol(const char *str)
 {
-	long i;
-	long neg;
-	long res;
+	int		i;
+	long	neg;
+	long	res;
 
 	i = 0;
 	neg = 1;
 	res = 0;
-	while ((s[i] == '\n' || s[i] == '\t' || s[i] == '\r'
-			|| s[i] == '\f' || s[i] == '\v' || s[i] == ' '))
+	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r'))
 		i++;
-	if (s[i] == '-' || s[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (s[i] == '-')
+		if (str[i] == '-')
 			neg = -1;
 		i++;
 	}
-	while (s[i] <= '9' && s[i] >= '0')
+	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 	{
-		res = res * 10 + (s[i] - '0');
+		res = (res * 10) + (str[i] - '0');
 		i++;
 	}
 	return (res * neg);

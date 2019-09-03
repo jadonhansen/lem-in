@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 11:38:39 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/05 15:21:10 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:32:29 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 11:21:06 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Copies `len` bytes from string `src` to `dst`. Copy is always done in a non-
+** destructive manner. Strings may overlap.
+** Returns original value of `dst`
+*/
 
 #include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int			x;
+	size_t		i;
 	char		*dest;
-	const char	*source;
+	char		*source;
+	int			x;
 
-	dest = dst;
-	source = src;
+	dest = (char*)dst;
+	source = (char*)src;
+	i = 0;
 	x = ((int)len - 1);
 	if (dest == source && len > 0)
 		return (NULL);
@@ -30,13 +38,10 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			x--;
 		}
 	else
-	{
-		x = 0;
-		while (x < (int)len)
+		while (i < len)
 		{
-			dest[x] = source[x];
-			x++;
+			dest[i] = source[i];
+			i++;
 		}
-	}
 	return (dst);
 }

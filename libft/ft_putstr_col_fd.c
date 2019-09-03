@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin.c                                            :+:      :+:    :+:   */
+/*   ft_putstr_col_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/22 11:10:39 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/23 11:45:30 by jhansen          ###   ########.fr       */
+/*   Created: 2019/07/02 10:30:53 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/07/02 10:31:41 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "libft.h"
 
-int		main(void)
+void	ft_putstr_col_fd(char *colour, char *str, int fd)
 {
-	char	*line;
-
-	while (get_next_line(0, line) > 0)
-	{
-		if (line)
-			error_checks(line);
-		else
-			write(1, "Error\n", 6);
-	}
+	ft_putstr_fd(colour, fd);
+	ft_putstr_fd(str, fd);
+	ft_putstr_fd(RESET, fd);
 }

@@ -3,20 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/23 11:34:58 by jhansen           #+#    #+#             */
-/*   Updated: 2019/05/30 11:14:34 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:45:41 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 14:02:12 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Locates last occurrence of `c` (converted to char) in string `s`. '\0' is
+** considered to be part of the string.
+** Returns pointer to the located character or NULL if the character does not
+** occur in the string.
+*/
 
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int i;
+	int		i;
 
-	i = ft_strlen(s);
+	i = (ft_strlen(s));
 	while (i >= 0 && s[i] != c)
 		i--;
 	if (!(s[i] == c))

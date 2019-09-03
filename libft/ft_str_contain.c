@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_negcase.c                                       :+:      :+:    :+:   */
+/*   ft_str_contain.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 16:01:39 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/10 16:11:34 by jhansen          ###   ########.fr       */
+/*   Created: 2019/09/03 16:50:44 by jhansen           #+#    #+#             */
+/*   Updated: 2019/09/03 16:53:24 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_negcase(int num, int count)
+int		ft_str_contain(char *needle, char *haystack)
 {
-	char	*str;
-	int		i;
-	int		rem;
+	int i;
+	int j;
 
 	i = 0;
-	rem = 0;
-	num *= -1;
-	if (num == INTMIN)
+	if (!(needle) || !(haystack))
+		return (0);
+	while (haystack[i] != '\0')
 	{
-		str = ft_strdup("-2147483648");
-		return (str);
-	}
-	str = (char *)malloc(sizeof(char) * count + 2);
-	if (str == NULL)
-		return (NULL);
-	while (i < count)
-	{
-		rem = num % 10;
-		num = num / 10;
-		str[count - i] = rem + '0';
+		j = 0;
+		while (needle[j] == haystack[i + j])
+		{
+			if (needle[j + 1] == '\0')
+				return (1);
+			j++;
+		}
 		i++;
 	}
-	str[count - i] = '-';
-	str[count + 1] = '\0';
-	return (str);
+	return (0);
 }

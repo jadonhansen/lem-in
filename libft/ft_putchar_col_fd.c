@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_colour.c                                 :+:      :+:    :+:   */
+/*   ft_putchar_col_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/13 16:04:55 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/13 16:12:31 by jhansen          ###   ########.fr       */
+/*   Created: 2019/07/02 10:29:45 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/07/02 10:30:46 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_colour(char *colour, char *str)
+void	ft_putchar_col_fd(char *colour, int c, int fd)
 {
-	ft_putstr(colour);
-	ft_putstr(str);
-	ft_putstr(RESET);
+	ft_putstr_fd(colour, fd);
+	ft_putchar_fd(c, fd);
+	ft_putstr_fd(RESET, fd);
 }

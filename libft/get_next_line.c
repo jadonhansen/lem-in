@@ -3,90 +3,105 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/19 11:28:55 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/23 11:17:58 by jhansen          ###   ########.fr       */
+/*   Created: 2019/06/18 08:27:38 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/07/01 10:56:29 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_file(int fd, t_list **file)
-{
-	t_list	*temp;
+/*
+** Finds the position of the newline char in the string that is passed to it
+*/
 
-	if (!file)
-		return (NULL);
-	temp = *file;
-	while (temp)
-	{
-		if ((int)temp->content_size == fd)
-			return (temp);
-		temp = temp->next;
-	}
-	temp = ft_lstnew("", fd);
-	ft_lstadd(file, temp);
-	return (temp);
-}
-
-int		ft_generate_line(char *content, char **line)
+static size_t	find_n(char **str, const int fd)
 {
-	int		i;
-	char	*temp;
+	size_t	i;
 
 	i = 0;
-	temp = *line;
-	while (content[i] && content[i] != '\n')
+	while (str[fd][i] != '\n' && str[fd][i] != '\0')
 		i++;
-	if (!(*line = ft_strndup(content, i)))
-		return (0);
 	return (i);
 }
 
-int		ft_reading(const int fd, char **content)
-{
-	char	buffer[BUFF_SIZE + 1];
-	char	*temp;
-	int		ret;
+/*
+** Takes the static var `str` and appends the string to `line` without the '\n'
+** char. Adds the overflow text to `extra` to temp hold the text before
+** reassigning it to static var `str` for use in the next loop.
+*/
 
-	while ((ret = read(fd, buffer, BUFF_SIZE)) > 0)
+static int		newline(const int fd, char **line, int ret, char **str)
+{
+	char	*extra;
+	size_t	i;
+
+	i = find_n(str, fd);
+	if (str[fd][i] == '\n')
 	{
+		*line = ft_strsub(str[fd], 0, i);
+		extra = ft_strdup(str[fd] + 1 + i);
+		free(str[fd]);
+		str[fd] = extra;
+		if (str[fd][0] == '\0')
+			ft_strdel(&str[fd]);
+	}
+	else if (str[fd][i] == '\0')
+	{
+		if (ret == BUFF_SIZE)
+			return (get_next_line(fd, line));
+		*line = ft_strdup(str[fd]);
+		ft_strdel(&str[fd]);
+	}
+	return (1);
+}
+
+/*
+** Function to determine what number (-1, 0, 1) to pass back to the main
+** -1 for an error, 0 for completion of reading in GNL, 1 for a successful
+** read of a line. Calls newline func to perform its job of reading to line
+** We are only assumed to be finished reading when the return value is 0 AND
+** the substring is at position '\0'
+*/
+
+static int		result(int ret, char **str, const int fd, char **line)
+{
+	if (ret < 0)
+		return (-1);
+	else if (ret == 0 && (str[fd] == NULL || str[fd] == '\0'))
+		return (0);
+	return (newline(fd, line, ret, str));
+}
+
+/*
+** ! Assumed `**line` will be initialized and freed by the main !
+** Multiple FDs supported. BUFF_SIZE chars are read from the FD, and assigned
+** to a temp variable, by joining `str` and `buffer`, before reassigning to
+** static var for safe-keeping. If a newline char is found in `buffer` during
+** the loop, we break out of the loop and call the newline function for
+** handling of assigning the "line" to `**line` for use in the main.
+*/
+
+int				get_next_line(const int fd, char **line)
+{
+	int			ret;
+	char		buffer[BUFF_SIZE + 1];
+	static char *str[99];
+	char		*tmp;
+
+	if (fd < 0 || line == NULL || read(fd, buffer, 0))
+		return (-1);
+	while ((ret = read(fd, buffer, BUFF_SIZE)))
+	{
+		if (str[fd] == NULL)
+			str[fd] = ft_strdup("");
 		buffer[ret] = '\0';
-		temp = *content;
-		if (!(*content = ft_strjoin(*content, buffer)))
-			return (-1);
-		free(temp);
+		tmp = ft_strjoin(str[fd], buffer);
+		free(str[fd]);
+		str[fd] = tmp;
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
-	return (ret);
-}
-
-int		get_next_line(const int fd, char **line)
-{
-	static t_list	*file;
-	t_list			*current;
-	char			buffer[BUFF_SIZE + 1];
-	char			*temp;
-	int				ret;
-
-	if ((fd < 0 || line == NULL || (read(fd, buffer, 0)) < 0
-		|| (!(current = ft_file(fd, &file))) || (BUFF_SIZE <= 0)))
-		return (-1);
-	temp = current->content;
-	ret = ft_reading(fd, &temp);
-	current->content = temp;
-	if (ret == 0 && *temp == '\0')
-		return (0);
-	ret = ft_generate_line(current->content, line);
-	temp = current->content;
-	if (temp[ret] != '\0')
-	{
-		current->content = ft_strdup(current->content + ret + 1);
-		free(temp);
-	}
-	else
-		ft_strclr(temp);
-	return (1);
+	return (result(ret, str, fd, line));
 }

@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/13 13:51:44 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/13 16:14:19 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/29 08:57:43 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 10:02:23 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Calculates the length of the int passed as argument.
+*/
 
 #include "libft.h"
 
 int		ft_intlen(int n)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	if (n < 0)

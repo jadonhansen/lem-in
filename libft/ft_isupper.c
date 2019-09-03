@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_array_free.c                                    :+:      :+:    :+:   */
+/*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/15 13:35:50 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/16 14:30:11 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:30:15 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 09:31:29 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Determines whether the character passed is an upper-case letter or not.
+*/
+
 #include "libft.h"
 
-void	ft_array_free(char **arr)
+int	ft_isupper(int c)
 {
-	int	i;
-
-	i = 0;
-	if (arr)
-	{
-		while (arr[i] != '\0')
-		{
-			free(arr[i]);
-			i++;
-		}
-		free(arr);
-	}
+	if (c >= 'A' && c <= 'Z')
+		return (TRUE);
+	else
+		return (FALSE);
 }

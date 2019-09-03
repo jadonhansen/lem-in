@@ -3,52 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 09:48:30 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/11 13:58:01 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/27 10:17:27 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 16:46:50 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_elsecase(int stop, int start, const char *s)
+/*
+** Helper function for ft_strtrim.
+** Determines if current character is white space, and iterates over it.
+*/
+
+static int	is_white_space(char const *s)
 {
-	size_t	j;
-	char	*string;
+	int		j;
 
 	j = 0;
-	if (!(string = ft_strnew(stop - start + 1)))
-		return (NULL);
-	while (start <= stop && j < ft_strlen(s))
-		string[j++] = s[start++];
-	string[j] = '\0';
-	return (string);
+	while (s[j] == ' ' || s[j] == '\t' || s[j] == '\n')
+		j++;
+	return (j);
 }
+
+/*
+** Allocates a copy of string `s` without whitespace at the beginning or end.
+** Whitespace = {space, new-line, tab}.
+** Returns `str` after removal of whitespace, or NULL if allocation fails.
+*/
 
 char		*ft_strtrim(char const *s)
 {
-	int		stop;
+	char	*str;
 	int		i;
-	char	*string;
+	int		n;
+	int		slen;
 
-	i = 0;
 	if (s == NULL)
 		return (NULL);
-	i = ft_strlen(s);
-	while ((s[i] == ' ' || s[i] == '\n' || s[i] == '\t' || s[i] == ','
-			|| s[i] == '\0'))
-		i--;
-	stop = i;
-	i = 0;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t' || s[i] == ',')
-		i++;
-	if (stop < i)
-	{
-		string = (char *)malloc(sizeof(char));
-		string[0] = '\0';
-	}
-	else
-		string = ft_elsecase(stop, i, s);
-	return (string);
+	if (ft_strlen(s) == 0)
+		return ((char*)s);
+	i = is_white_space(s);
+	n = 0;
+	slen = ft_strlen(s) - 1;
+	if (s[i] == '\0')
+		return (ft_strdup(""));
+	while (s[slen] == '\t' || s[slen] == '\n' || s[slen] == ' ')
+		slen--;
+	if (slen < 0)
+		slen = 0;
+	if (!(str = (char *)malloc(sizeof(char) * (slen - i) + 2)))
+		return (NULL);
+	while (i <= slen)
+		str[n++] = s[i++];
+	str[n] = '\0';
+	return (str);
 }

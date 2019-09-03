@@ -3,35 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/24 14:03:56 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/10 16:26:03 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:45:01 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 14:42:48 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Lexicograpical comparison of the null-terminated strings `s1` & `s2`, as
+** unsigned characters, where not more than `n` characters are compared.
+** Returns integer greater than, equal to, or less than 0 depending on whether
+** `s1` is greater than, equal to, or less than `s2`
+*/
 #include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int				i;
-	unsigned char	*str1;
-	unsigned char	*str2;
+	size_t i;
 
 	i = 0;
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	if (n > 0)
+	while (((s1[i] != '\0') || (s2[i] != '\0')) && (i < n))
 	{
-		while ((str1[i] == str2[i] && str1[i] != '\0'
-				&& str2[i] != '\0' && ((size_t)i < n - 1)))
-		{
-			i++;
-		}
-		if (str1[i] > str2[i])
-			return (1);
-		if (str1[i] < str2[i])
+		if ((unsigned char)s1[i] > (unsigned char)s2[i])
+			return (TRUE);
+		if ((unsigned char)s1[i] < (unsigned char)s2[i])
 			return (-1);
+		i++;
 	}
-	return (0);
+	return (FALSE);
 }

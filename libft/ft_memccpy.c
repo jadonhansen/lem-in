@@ -3,29 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 10:19:21 by jhansen           #+#    #+#             */
-/*   Updated: 2019/05/27 17:03:54 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:31:44 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 11:18:18 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Copies bytes from string `src` to `dst`. If character `c` (converted to
+** unsigned char) occurs in string `src`, the copy stops and pointer to the
+** byte after copy of `c` in `dst` is returned, otherwise `n` bytes are copied
+** and NULL pointer is returned
+*/
 
 #include "libft.h"
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int			i;
-	char		*dest;
-	const char	*source;
+	size_t			i;
+	unsigned char	*dest;
+	unsigned char	*source;
 
-	dest = dst;
-	source = src;
+	dest = (unsigned char*)dst;
+	source = (unsigned char*)src;
 	i = 0;
-	while ((size_t)i < n)
+	while (i < n)
 	{
 		dest[i] = source[i];
-		if (source[i] == (char)c)
-			return (dst + i + 1);
+		if (source[i] == (unsigned char)c)
+			return (dest + i + 1);
 		i++;
 	}
 	return (NULL);

@@ -3,26 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 11:41:30 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/05 17:06:49 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:35:26 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 17:01:11 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Outputs string `s` to the standard output. Uses ft_putstr_fd, passing
+** 1 as the file descriptor.
+*/
 
 #include "libft.h"
 
 void	ft_putstr(char const *s)
 {
-	int i;
-
-	i = 0;
-	if (s != NULL)
-	{
-		while (s[i] != '\0')
-		{
-			ft_putchar(s[i]);
-			i++;
-		}
-	}
+	ft_putstr_fd(s, 1);
 }

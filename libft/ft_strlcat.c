@@ -3,30 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 14:05:00 by jhansen           #+#    #+#             */
-/*   Updated: 2019/05/27 17:13:00 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:44:13 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 12:49:51 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Appends `src` to end of `dst`. Appends at most (`dstsize` - strlen(`dst`)-1)
+** It will NUL-terminate unless `dstsize` == 0 or `dst` longer than `dstsize`.
+** Returns the total length of the string that was created (initial length of
+** `dst` + strlen(`src`))
+*/
 
 #include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t length;
-	size_t i;
+	size_t	dstlen;
+	size_t	i;
 
-	length = 0;
-	while (dst[length] != '\0' && length < dstsize)
-		length++;
-	i = length;
-	while ((src[length - i] != '\0') && (length + 1 < dstsize))
+	dstlen = 0;
+	while ((dst[dstlen] != '\0') && dstlen < dstsize)
+		dstlen++;
+	i = dstlen;
+	while ((src[dstlen - i] != '\0') && (dstlen + 1 < dstsize))
 	{
-		dst[length] = src[length - i];
-		length++;
+		dst[dstlen] = src[dstlen - i];
+		dstlen++;
 	}
 	if (i < dstsize)
-		dst[length] = '\0';
+		dst[dstlen] = '\0';
 	return (i + ft_strlen(src));
 }

@@ -5,14 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 15:09:10 by jhansen           #+#    #+#             */
-/*   Updated: 2019/08/23 11:18:03 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:24:59 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/09/03 16:50:27 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define INTMIN -2147483648
+
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+# define MININT "-2147483648"
+# define TRUE 1
+# define FALSE 0
+
+# define BUFF_SIZE 42
+
 # define RESET "\033[00m"
 # define GREEN "\033[32m"
 # define BLUE "\033[34m"
@@ -20,38 +30,20 @@
 # define RED "\033[31m"
 # define YELLOW "\033[33m"
 # define CYAN "\033[36m"
-# define BUFF_SIZE 1000
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
 
 /*
-**PART ONE FUNCTIONS:
+** Part 1
 */
 
-int					ft_tolower(int c);
-int					ft_toupper(int c);
-int					ft_isprint(int c);
-int					ft_isascii(int c);
-int					ft_isalnum(int c);
-int					ft_isdigit(int c);
-int					ft_isalpha(int c);
-int					ft_atoi(const char *str);
-void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *b, int c, size_t len);
+void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
-size_t				ft_strlen(const char *s);
+size_t				ft_strlen(const char *str);
+char				*ft_strdup(const char *s1);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 char				*ft_strcat(char *s1, const char *s2);
@@ -60,24 +52,23 @@ size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
-char				*ft_strdup(const char *s1);
-char				*ft_strnstr(const char *haystack, const char *needle,
-								size_t len);
+char				*ft_strnstr(const char *haystack, const char *needle, \
+									size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int					ft_atoi(const char *str);
+int					ft_isalpha(int c);
+int					ft_isdigit(int c);
+int					ft_isalnum(int c);
+int					ft_isascii(int c);
+int					ft_isprint(int c);
+int					ft_toupper(int c);
+int					ft_tolower(int c);
 
 /*
-**PART TWO FUNCTIONS:
+** Part 2
 */
 
-void				ft_putchar(char c);
-void				ft_putstr(char const *s);
-void				ft_putnbr(int n);
-void				ft_putendl(char const *s);
-void				ft_putchar_fd(char c, int fd);
-void				ft_putstr_fd(char const *s, int fd);
-void				ft_putnbr_fd(int n, int fd);
-void				ft_putendl_fd(char const *s, int fd);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 char				*ft_strnew(size_t size);
@@ -94,22 +85,25 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
+void				ft_putchar(char c);
+void				ft_putchar_fd(char c, int fd);
+void				ft_putstr(char const *s);
+void				ft_putstr_fd(char const *s, int fd);
+void				ft_putendl(char const *s);
+void				ft_putendl_fd(char const *s, int fd);
+void				ft_putnbr(int n);
+void				ft_putnbr_fd(int n, int fd);
 
 /*
-**EXTRA functions used within other functions:
+** Bonus
 */
 
-int					ft_getlen(int num);
-char				*ft_negcase(int num, int count);
-char				*ft_poscase(int num, int count);
-int					ft_word_count(char const *s, char c, int index);
-int					ft_word_len(char const *s, char c, int index);
-char				**ft_populatearray(int count, char c, char const *s,
-										char **array);
-
-/*
-**BONUS list functions:
-*/
+typedef struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
@@ -119,20 +113,25 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 /*
-**Used for get_next_line:
+** Extra
 */
 
+int					ft_islower(int c);
+int					ft_isupper(int c);
+int					ft_isspace(int c);
+int					ft_intlen(int n);
+char				*ft_strrev(char *str);
 char				*ft_strndup(const char *s1, size_t n);
 int					get_next_line(const int fd, char **line);
-
-/*
-**Extra used in push_swap
-*/
-
+void				ft_sort_int_tab(int *tab, unsigned int size);
+void				ft_putendl_col_fd(char *colour, char *str, int fd);
+void				ft_putstr_col_fd(char *colour, char *str, int fd);
+void				ft_putnbr_col_fd(char *colour, int nbr, int fd);
+void				ft_putchar_col_fd(char *colour, int c, int fd);
+long				ft_atol(const char *str);
 int					ft_str_is_numeric(const char *str);
-int					ft_intlen(int n);
-void				ft_putstr_colour(char *colour, char *s);
-long				ft_atol(char *s);
-void				ft_array_free(char **arr);
+void				ft_putnbr_nl(int n);
+void				ft_free_array(char **arr);
+int					ft_str_contain(char *needle, char *haystack);
 
 #endif

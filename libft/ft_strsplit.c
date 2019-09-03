@@ -3,26 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 12:44:09 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/10 16:14:08 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/27 10:19:37 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 16:55:49 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			**ft_strsplit(char const *s, char c)
+/*
+** Helper function for ft_strsplit.
+** Recursively counts the number of words in the string `str`, words found
+** between delimiters `delim`.
+** Returns word count `count`.
+*/
+
+static int	count_words(char const *str, char delim, int index)
 {
-	char	**array;
 	int		count;
 
-	if (s == NULL || c == (char)NULL)
+	if (!(str[index]))
+		return (0);
+	count = 0;
+	while (str[index] == delim)
+		index++;
+	while (str[index] != '\0' && str[index] != delim)
+	{
+		index++;
+		count = 1;
+	}
+	return (count + count_words(str, delim, index));
+}
+
+/*
+** Helper function for ft_strsplit.
+** Determines the length of each word found in string `str`.
+** Returns word length `len`.
+*/
+
+static int	str_len(char const *str, char delim, int index)
+{
+	int		len;
+
+	len = 0;
+	while (str[index] == delim)
+		index++;
+	while (str[index] != delim && str[index] != '\0')
+	{
+		index++;
+		len++;
+	}
+	return (len);
+}
+
+/*
+** Allocates a fresh array of strings (all ending with '\0', including the
+** array) obtained by splitting `s` using character `c` as a delimiter.
+** Returns the array of strings, or NULL if allocation fails.
+*/
+
+char		**ft_strsplit(char const *s, char c)
+{
+	int		i;
+	int		j;
+	char	**array;
+	int		k;
+
+	if (!s || !c)
 		return (NULL);
-	count = ft_word_count(s, c, 0);
-	array = (char **)malloc(sizeof(char *) * count + 1);
-	if (array == NULL)
+	if (!(array = (char**)malloc(sizeof(*array) * (count_words(s, c, 0) + 1))))
 		return (NULL);
-	ft_populatearray(count, c, s, array);
+	i = 0;
+	j = 0;
+	while (i < count_words(s, c, 0))
+	{
+		k = 0;
+		if (!(array[i] = ft_strnew(str_len(s, c, j))))
+			return (NULL);
+		while (s[j] == c)
+			j++;
+		while (s[j] != c && s[j])
+			array[i][k++] = s[j++];
+		array[i][k] = '\0';
+		i++;
+	}
+	array[i] = 0;
 	return (array);
 }

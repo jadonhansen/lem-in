@@ -3,39 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/31 14:05:55 by jhansen           #+#    #+#             */
-/*   Updated: 2019/06/27 15:43:00 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:44:02 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 16:28:44 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Allocates a new string ending with '\0', which is a result of the concaten-
+** tion of `s1` & `s2`.
+** Returns the result of the concatenation (`str`) or NULL if allocation fails.
+*/
 
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t		i;
-	size_t		j;
-	char		*result;
+	char	*str;
+	int		i;
+	int		j;
 
-	if (!s1 || !s2)
-		return (NULL);
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	if (!(result = ft_strnew(i + j + 1)))
-		return (NULL);
-	result[i + j] = '\0';
 	i = 0;
-	while (s1[i])
-	{
-		result[i] = s1[i];
-		i++;
-	}
 	j = 0;
-	while (s2[j])
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	str = (char*)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		result[i + j] = s2[j];
-		j++;
+		str[j++] = s1[i++];
 	}
-	return (result);
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		str[j++] = s2[i++];
+	}
+	str[j] = '\0';
+	return (str);
 }

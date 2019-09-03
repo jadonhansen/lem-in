@@ -3,12 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 16:57:32 by jhansen           #+#    #+#             */
-/*   Updated: 2019/05/27 17:02:46 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:31:50 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 11:12:13 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Copies `n` bytes from memory area `src` to memory area `dst`
+** Returns original value of `dst`
+*/
 
 #include "libft.h"
 
@@ -16,18 +21,17 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char		*dest;
 	const char	*source;
-	int			i;
+	size_t		i;
 
-	i = 0;
 	dest = dst;
 	source = src;
-	if (n == 0 || dst == src)
-		return (dst);
-	while (n > 0)
+	i = 0;
+	if (dest == NULL && source == NULL)
+		return (dest);
+	while (i < n)
 	{
 		dest[i] = source[i];
 		i++;
-		n--;
 	}
-	return (dst);
+	return (dest);
 }

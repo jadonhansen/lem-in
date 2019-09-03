@@ -3,19 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/30 13:13:08 by jhansen           #+#    #+#             */
-/*   Updated: 2019/05/30 13:25:38 by jhansen          ###   ########.fr       */
+/*   Created: 2019/05/21 09:41:11 by cdiogo            #+#    #+#             */
+/*   Updated: 2019/06/05 15:51:19 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Frees a string pointed to by `*as`, before setting that pointer to NULL.
+*/
 
 #include "libft.h"
 
 void	ft_strdel(char **as)
 {
-	if (as == NULL)
-		return ;
-	free(*as);
-	*as = NULL;
+	if (as != NULL)
+	{
+		free(*as);
+		*as = NULL;
+	}
 }
