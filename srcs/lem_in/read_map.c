@@ -6,7 +6,7 @@
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 16:15:37 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 16:59:27 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/06 14:31:07 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,17 @@ void		check_line(char *line, t_content **file)
 	if (is_comment(line))
 		return ;
 	words = word_count(line);
-	status = word_manager(line, words);
-	if (status == 0)
-		free_content_error(file, BAD_INPUT);
-	line = whitespace_remover(line, status, file);
-	(*file) = init_content(file, line);
-	free(line);
+	if (words == 0)
+		free_content_error(file, EMPTY_LINE);
+	else
+	{
+		status = word_manager(line, words);
+		if (status == 0)
+			free_content_error(file, BAD_INPUT);
+		line = whitespace_remover(line, status, file);
+		(*file) = init_content(file, line);
+		free(line);
+	}
 }
 
 t_rooms		*read_map(void)
@@ -67,7 +72,9 @@ t_rooms		*read_map(void)
 			free_rooms_error(&rooms, ERROR);
 		error_out(ERROR);
 	}
+	ft_putstr("\n\n");		//debug purposes
 	print_content(&file);
 	free_content(&file);
+	ft_putstr("\n\n");		//debug purposes
 	return (rooms);
 }

@@ -6,7 +6,7 @@
 /*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 12:17:02 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 12:46:15 by cdiogo           ###   ########.fr       */
+/*   Updated: 2019/09/10 09:23:55 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void			populate_viz(t_viz *viz)
 {
 	viz->window = init_window(viz);
 	viz->rend = init_renderer(viz);
-	viz->bg = init_texture(viz, "srcs/viz/resources/bg.png");
+	viz->bg = init_texture(viz, "srcs/viz/resources/bg.jpg");
 	viz->ant = init_texture(viz, "srcs/viz/resources/ant.png");
 	viz->room = init_texture(viz, "srcs/viz/resources/room.png");
 }

@@ -6,7 +6,7 @@
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 16:19:08 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 16:59:41 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/11 13:14:19 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ int		main(int ac, char **av)
 	t_rooms	*rooms;
 
 	av = av + 1;
-	rooms = read_map(); 		//checks each line of text that it is valid. Shoves input into corresponding list members if it is valid.
+	rooms = read_map();
+	print_rooms(&rooms); 	// debug purposes
 	ft_putendl("");
-	//while(1); 		//tests for leaks
+	free_rooms(&rooms);
+	//bigboy_algo(rooms);
+	while(1);					//tests for leaks
 	return (0);
 }

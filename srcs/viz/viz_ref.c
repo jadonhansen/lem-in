@@ -6,7 +6,7 @@
 /*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 10:30:14 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/02 16:00:09 by cdiogo           ###   ########.fr       */
+/*   Updated: 2019/09/04 17:56:19 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ int main()
 
 		// clears the screen 
 		SDL_RenderClear(rend); 
+		// stringRGBA(rend, start_box.x, start_box.y - 50, "START", 0, 0, 0, 255);
+		stringColor(rend, start_box.x, start_box.y - 20, "START", 0xFFFFFF00);
 		thickLineColor(rend, (start_box.x + (start_box.w /2)), (start_box.y + (start_box.h /2)), (end_box.x + (end_box.w /2)), (end_box.y + (end_box.h /2)), 8, 0xFFFFFF00);
 		SDL_RenderCopy(rend, s_tex, NULL, &start_box);
 		SDL_RenderCopy(rend, e_tex, NULL, &end_box);

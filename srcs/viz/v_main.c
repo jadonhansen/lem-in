@@ -6,7 +6,7 @@
 /*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 09:10:12 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 16:47:06 by cdiogo           ###   ########.fr       */
+/*   Updated: 2019/09/04 09:14:14 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		main(void)
 	// draw_ants();
 	//event loop (space to move through the turns)
 	event_loop(visualizer, info, moves); //handle drawing things in the event loop?
-	//free & close upon completion
+	//free & close upon completion YA BOI
 	viz_free(&visualizer);
 	return (0);
 }

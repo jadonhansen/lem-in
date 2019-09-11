@@ -6,7 +6,7 @@
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 08:40:20 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 17:19:58 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/11 15:07:25 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ typedef struct			s_content
 	struct s_content	*next;
 }						t_content;
 
+typedef struct			s_links
+{
+	char				*one;
+	char				*two;
+	struct s_links		*next;
+	struct s_links		*prev;		//is this needed??
+}						t_links;
+
+
 typedef struct			s_rooms
 {
 	char				*name;
@@ -54,7 +63,7 @@ typedef struct			s_rooms
 	int					start;
 	int					end;
 	struct s_rooms		*next;
-	//struct to hold links
+	//put link struct in here
 	//struct to hold moves if needed
 }						t_rooms;
 
@@ -88,10 +97,15 @@ void					error_out(int code);
 **	Advanced Error Checking
 */
 
+t_rooms					*filler(t_content **file, t_rooms **head);
 int						advanced_check_and_fill(t_content **file, t_rooms **head);
 int						check_for_ant(t_content **head);
-int						valid_link(char *line);
-int						valid_room(char *line);
+int						duplicate_rooms(t_rooms **rooms);
+int						double_check(char *current, char *temp);
+int						duplicate_link(t_content **file);
+int						is_endstart(t_rooms **rooms);
+int						existing_room(t_content **file, t_rooms **head);
+int						existing_room(t_content **file, t_rooms **head);
 
 /*
 **  t_content funcs
@@ -105,6 +119,8 @@ void					free_content(t_content **head);
 **	t_rooms funcs
 */
 
-t_rooms					*init_rooms(t_rooms **file, char *line);
+void					print_rooms(t_rooms **head);
+t_rooms					*init_rooms(t_rooms **head, char *s, int val);
+void					init_links(t_content **file, t_rooms **head);
 
 #endif

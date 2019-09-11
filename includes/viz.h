@@ -6,7 +6,7 @@
 /*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 09:51:11 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 12:29:40 by cdiogo           ###   ########.fr       */
+/*   Updated: 2019/09/09 16:57:33 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 //Header for visualizer
 # define WIDTH 1920
 # define HEIGHT 1080
+# define ROOM_W 100
+# define ROOM_H 100
 
 typedef struct		s_moves
 {
@@ -61,7 +63,7 @@ void				viz_free(t_viz **viz);
 ** Event Loop
 */
 
-void				event_loop(t_viz *viz, t_rooms *info, t_moves *moves);
+void				event_loop(t_viz *viz, t_rooms **info, t_moves *moves);
 void				event_check(t_viz *viz, t_moves *moves);
 
 /*
@@ -69,5 +71,14 @@ void				event_check(t_viz *viz, t_moves *moves);
 */
 
 t_rooms				*read_info(t_rooms **info);
+
+/*
+** Drawing of links, rooms, ants
+*/
+
+void				draw_links(t_viz *viz, t_rooms **info);
+void				draw_rooms(t_viz *viz, t_rooms **info);
+void				draw_ants(t_viz *viz, t_rooms **info);
+void				draw_bg(t_viz *viz);
 
 #endif

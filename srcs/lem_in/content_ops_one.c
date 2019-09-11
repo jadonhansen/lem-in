@@ -6,7 +6,7 @@
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 12:21:07 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 15:42:44 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/04 15:43:45 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ t_content			*init_content(t_content **file, char *line)
 		add_tail(&head, node);
 	}
 	else
-	{
 		head = create_node(line);
-	}
 	return (head);
 }
 

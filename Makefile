@@ -20,9 +20,11 @@ VHDR = ./includes/viz.h
 
 OBJ = $(LOBJ_DIR)lem_in.o $(LOBJ_DIR)read_map.o $(LOBJ_DIR)basic_errors_one.o
 OBJ += $(LOBJ_DIR)basic_errors_two.o $(LOBJ_DIR)error_output.o $(LOBJ_DIR)content_ops_one.o
-OBJ += $(LOBJ_DIR)rooms_ops.o $(LOBJ_DIR)advanced_check.o $(LOBJ_DIR)content_ops_two.o
+OBJ += $(LOBJ_DIR)rooms_ops.o $(LOBJ_DIR)advanced_check_one.o $(LOBJ_DIR)content_ops_two.o
+OBJ += $(LOBJ_DIR)advanced_check_two.o
 
-OBJ_V = $(VOBJ_DIR)v_main.o
+OBJ_V = $(VOBJ_DIR)v_main.o $(VOBJ_DIR)v_init.o $(VOBJ_DIR)v_event.o $(VOBJ_DIR)v_drawing.o
+OBJ_V += $(VOBJ_DIR)v_helpers.o $(VOBJ_DIR)v_error.o
 
 all: $(LIB) $(NAME) #$(NAME_V)
 

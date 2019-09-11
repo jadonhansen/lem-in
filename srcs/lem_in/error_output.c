@@ -6,7 +6,7 @@
 /*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 10:43:46 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 15:33:32 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/06 15:05:48 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ void				free_rooms(t_rooms **head)
 		current = *head;
 		while (current)
 		{
-			ft_putendl("While!");
 			next = current->next;
-			//free(current->name);		//only free laters
+			free(current->name);
 			free(current);
 			current = next;
 		}
