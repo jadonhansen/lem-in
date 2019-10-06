@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rooms_ops.c                                        :+:      :+:    :+:   */
+/*   rooms_ops_one.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.wethinkcode.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 12:20:31 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/11 15:11:17 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/10/06 13:55:27 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ static t_rooms		*create_node(char *line, int xcoord, int ycoord, int val)
 		node->name = line;
 		node->x = xcoord;
 		node->y = ycoord;
+		node->links = NULL;
+		node->weight = 0;
+		node->occupied = 0;
 		if (val == 1)
 		{
 			node->start = 1;
@@ -37,6 +40,7 @@ static t_rooms		*create_node(char *line, int xcoord, int ycoord, int val)
 			node->start = 0;
 			node->end = 0;			
 		}
+		node->prev = NULL;
 		node->next = NULL;
 	}
 	return (node);
@@ -54,6 +58,7 @@ static void			add_tail(t_rooms **head, t_rooms *node)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = node;
+		node->prev = tmp;
 	}
 }
 
@@ -80,28 +85,10 @@ t_rooms		*init_rooms(t_rooms **head, char *s, int val)
 	return (*head);
 }
 
-void		init_links(t_content **file, t_rooms **head)
-{
-	t_content	*temp;
-	t_rooms		*room;
-
-	temp = *file;
-	room = *head;
-	while (temp != NULL)
-	{
-		if ((word_count(temp->content) == 1) && is_link(temp->content))
-		{
-			//get the two room links from the link
-			//find a match of the two link names to the room/s
-			//add a link struct node into the respectiveroom struct
-		}
-		temp = temp->next;
-	}
-}
-
-void		print_rooms(t_rooms **head)
+void		print_rooms(t_rooms **head)		//debugging
 {
 	t_rooms	*temp;
+	t_links	*temp_l;
 
 	temp = *head;
 	if (temp)
@@ -111,11 +98,25 @@ void		print_rooms(t_rooms **head)
 			ft_putstr("NAME:  ");
 			ft_putstr_col_fd(CYAN, temp->name, 1);
 			ft_putchar('\n');
-			ft_putstr("X: ");
+			ft_putstr("LINKS: ");
+			if (temp->links)
+			{
+				temp_l = temp->links;
+				while (temp_l != NULL)
+				{
+					if (temp_l->name)
+						ft_putstr_col_fd(GREEN, temp_l->name, 1);
+					if (temp_l->next != NULL)
+						ft_putstr(", ");
+					temp_l = temp_l->next;
+				}
+			}
+			ft_putstr("\nX: ");
 			ft_putnbr_col_fd(BLUE, temp->x, 1);
-			ft_putchar('\n');
-			ft_putstr("Y: ");
+			ft_putstr("\nY: ");
 			ft_putnbr_col_fd(BLUE, temp->y, 1);
+			ft_putstr("\nWeight:");
+			ft_putnbr_col_fd(RED, temp->weight, 1);
 			ft_putchar('\n');
 			if (temp->start == 1)
 			{
@@ -137,5 +138,8 @@ void		print_rooms(t_rooms **head)
 		}
 	}
 	else
+	{
 		printf("No list\n");
+		exit (1);
+	}
 }

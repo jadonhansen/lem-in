@@ -6,51 +6,79 @@
 /*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 13:03:28 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/09 16:56:26 by cdiogo           ###   ########.fr       */
+/*   Updated: 2019/09/20 10:04:15 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/viz.h"
+#include <viz.h>
 
 /*
-** Looks for key input, for the purpose of closing the visualizer or executing
-** a turn.
+** Looks for key input, for the purpose of closing the visualizer, executing
+** a turn or resetting the moves.
 */
 
-void		event_check(t_viz *viz, t_moves *moves)
+void	event_check(t_viz *viz, t_moves **moves, t_ants **ants, t_room **info)
 {
 	SDL_Event	event;
+	t_ants		*tmp;
 
 	while (SDL_PollEvent(&event))
 	{
-		if (event.type == SDL_Quit)
+		if ((event.type == SDL_KEYDOWN && KEY_Q) || event.type == SDL_QUIT)
 			viz->close = 1;
-		if (event.key.keysym.scancode == SDL_SCANCODE_Q)
-			viz->close = 1;
-		if (event.key.keysym.scancode == SDL_SCANCODE_SPACE)
+		if (event.type == SDL_KEYDOWN && KEY_R && !viz->active)
+			reset_moves(*moves, ants, info, viz);
+		if (event.type == SDL_KEYDOWN && KEY_N && !viz->active)
 		{
-			//Move ants when space is pressed.
+			tmp = *ants;
+			while (tmp->next)
+				tmp = tmp->next;
+			if (tmp->current->type == 2)
+				return ;
+			viz->active = 1;
+			parse_move(ants, info, viz);
 		}
 	}
 }
 
 /*
-** Loop that's responsible for: Redrawing rooms, links and ants each turn 
+** Loop responsible for: Redrawing rooms, links and ants each turn, as well as
+** calling functions to check for keyboard events and update animation values.
 */
 
-void		event_loop(t_viz *viz, t_rooms **info, t_moves *moves)
+void	event_loop(t_viz *viz, t_room **info, t_moves **moves, t_ants **ant)
 {
-	//TODO
+	viz->percent = 0.01;
 	while (!(viz->close))
 	{
-		//stuff
-		SDL_RenderClear(viz->rend);
-		draw_bg(viz);
-		draw_links(viz, info);
-		draw_rooms(viz, info);
-		// draw_ants(viz, info);
-		SDL_RenderPresent(viz->rend);
-		SDL_Delay(1000 / 120);
-		event_check(viz, moves);
+		draw_master(viz, ant, info);
+		SDL_Delay(1000 / 60);
+		update_perc(viz, ant);
+		event_check(viz, moves, ant, info);
+	}
+}
+
+/*
+** Updates the percent value for smooth animations, also has a check to prevent
+** ant "resetting" to the previous room once it reaches end room.
+*/
+
+void	update_perc(t_viz *viz, t_ants **ants)
+{
+	t_ants	*tmp;
+
+	tmp = *ants;
+	if (viz->active && viz->percent < 1)
+		viz->percent += 0.01;
+	else if (viz->active)
+	{
+		viz->active = 0;
+		viz->percent = 0.01;
+		while (tmp)
+		{
+			if (tmp->current->type == 2)
+				tmp->previous = tmp->current;
+			tmp = tmp->next;
+		}
 	}
 }

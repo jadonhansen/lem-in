@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_errors_two.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 08:37:21 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/06 11:36:10 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/18 13:01:16 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ int		word_count(char *str)
 	int	i;
 	int	count;
 
-	i = 0;
 	count = 0;
-	while (str[i] != '\0')
+	if (str != NULL)
 	{
-		while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0')
-			i++;
-		if (str[i] != '\0' && str[i] != ' ' && str[i] != '\t')
-			count++;
-		while (str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
-			i++;
+		i = 0;
+		while (str[i] != '\0')
+		{
+			while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0')
+				i++;
+			if (str[i] != '\0' && str[i] != ' ' && str[i] != '\t')
+				count++;
+			while (str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
+				i++;
+		}
 	}
 	return (count);
 }

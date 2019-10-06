@@ -6,41 +6,35 @@
 /*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 09:10:12 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/20 12:24:39 by cdiogo           ###   ########.fr       */
+/*   Updated: 2019/09/04 09:14:14 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lem_in2.h>
-#include <viz.h>
+#include "../../includes/viz.h"
 
-int			map_count(void)
+int		main(void)
 {
-	static int	i = -1;
-
-	i++;
-	return (i);
-}
-
-int			main(void)
-{
-	char			*mappy[MAP_MAX];
-	t_room			*rooms;
-	t_viz			*visualizer;
-	t_moves			*moves;
-	t_ants			*ant;
-
-	ant = NULL;
-	moves = NULL;
-	v_populate_map(mappy, &rooms, &moves);
-	room_swap(&rooms);
-	set_ants(mappy, &rooms);
+	t_viz	*visualizer;
+	t_rooms	*info;
+	t_moves	*moves; //include moves within the main lem_in struct instead?
+	//TODO
+	//read in from GNL (read until empty line, then set a bool to false to change the struct being written to?)
+	info = NULL;
+	// info = init_rooms(&info, line);
+	info = read_info(&info);
+	//init the viz struct
 	visualizer = init_viz();
-	populate_viz(visualizer, &moves);
-	ant = populate_ants(&rooms, &ant);
-	event_loop(visualizer, &rooms, &moves, &ant);
+	//allocate/populate to the viz struct
+	populate_viz(visualizer);
+	//draw links
+	// draw_links();
+	//draw rooms
+	// draw_rooms();
+	//draw ants
+	// draw_ants();
+	//event loop (space to move through the turns)
+	event_loop(visualizer, info, moves); //handle drawing things in the event loop?
+	//free & close upon completion YA BOI
 	viz_free(&visualizer);
-	moves_free(&moves);
-	ants_free(&ant);
-	free_rooms(&rooms);
 	return (0);
 }

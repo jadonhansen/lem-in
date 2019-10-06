@@ -8,4 +8,7 @@ TBD/100
 TBD/25
 
 #### Project Overview:
-Summary: This project is meant to make you code an ant farm manager.
+Summary: This project revolves around an ant farm. The algorithm will find the shortest path for the ants to follow to reach the end room from the start room.
+
+### Installing:
+This project requires SDL for visualizing. You can run the provided `bootstrap.sh` file to install brew as well as install all SDL Dependencies.

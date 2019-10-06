@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   content_ops_one.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 12:21:07 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/04 15:43:45 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/19 11:30:17 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ void				print_content(t_content **head)
 	{
 		while (node)
 		{
-			ft_putendl_col_fd(CYAN, node->content, 1); //remove colour printing
+			ft_putendl(node->content);
 			node = node->next;
 		}
 	}
+	ft_putchar('\n');
 }

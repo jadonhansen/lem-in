@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   advanced_check_two.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:09:04 by jhansen           #+#    #+#             */
-/*   Updated: 2019/09/11 14:37:22 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/18 14:37:45 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,27 @@ int			duplicate_rooms(t_rooms **rooms)
 	t_rooms	*current;
 
 	temp = *rooms;
+	current = NULL;
 	while (temp->next != NULL)
 	{
 		current = temp->next;
 		while (current != NULL)
 		{
-			if ((ft_strequ(temp->name, current->name)
-				|| (temp->x == current->x && temp->y == current->y)))
+			if (ft_strequ(temp->name, current->name))
+			{
+				error_out(DUP_ROOM);
 				return (0);
+			}
+			if ((temp->x == current->x) && (temp->y == current->y))
+			{
+				error_out(DUP_XY);
+				return (0);
+			}
 			current = current->next;
 		}
 		temp = temp->next;
 	}
+	ft_putendl_col_fd(RED, "Done dup room check", 1);
 	return (1);
 }
 
@@ -62,6 +71,7 @@ int			duplicate_link(t_content **file)
 	t_content	*current;
 
 	temp = *file;
+	current = NULL;
 	while (temp != NULL)
 	{
 		if ((word_count(temp->content) == 1) && is_link(temp->content))
@@ -73,13 +83,17 @@ int			duplicate_link(t_content **file)
 				if ((word_count(current->content) == 1) && is_link(current->content))
 				{
 					if (double_check(temp->content, current->content) == 0)
+					{
+						error_out(DUP_LINK);
 						return (0);
+					}
 				}
 				current = current->next;
 			}
 		}
 		temp = temp->next;
 	}
+	ft_putendl_col_fd(RED, "Done dup link check", 1);
 	return (1);
 }
 
@@ -110,13 +124,19 @@ int			existing_room(t_content **file, t_rooms **head)
 {
 	t_content	*temp;
 
-	temp = *file;
+	if (*file && *head)
+		temp = *file;
+	else
+		return (0);
 	while (temp != NULL)
 	{
 		if ((word_count(temp->content) == 1) && is_link(temp->content))
 		{
 			if (cross_check(head, temp->content) == 0)
+			{
+				error_out(NON_EXISTING_ROOM);
 				return (0);
+			}
 		}
 		temp = temp->next;
 	}

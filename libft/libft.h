@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:24:59 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/03 16:50:27 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/09/20 13:16:48 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@
 # define BUFF_SIZE 42
 
 # define RESET "\033[00m"
-# define GREEN "\033[32m"
-# define BLUE "\033[34m"
-# define WHITE "\033[37m"
 # define RED "\033[31m"
+# define GREEN "\033[32m"
 # define YELLOW "\033[33m"
+# define BLUE "\033[34m"
+# define MAGENTA "\033[35m"
 # define CYAN "\033[36m"
+# define WHITE "\033[37m"
 
 /*
 ** Part 1
