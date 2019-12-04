@@ -135,6 +135,7 @@ int		advanced_check_and_fill(t_content **file, t_rooms **head)
 			if (*head && existing_room(file, head))
 			{
 				init_links(file, head);
+				set_ants(head, file);
 				return (1);
 			}
 		}

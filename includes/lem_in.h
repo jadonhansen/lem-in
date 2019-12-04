@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <jhansen@student.wethinkcode.co    +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 08:40:20 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/10/06 14:05:18 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/12/04 11:40:39 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct			s_rooms
 	int					y;
 	int					start;
 	int					end;
-	int					occupied;
+	int					ant_count;
 	int					weight;
 	t_links				*links;
 	struct s_rooms		*next;
@@ -81,6 +81,13 @@ typedef struct			s_path
 	char				*name;
 	struct s_path		*next;
 }						t_path;
+
+typedef struct			s_ant
+{
+	int					ant_num;
+	char				*curr_path;
+	t_path				*path;
+}						t_ant;
 
 /*
 **	Reading & Basic Error Checks of Input
@@ -127,10 +134,13 @@ int						dup_link_check(t_links **head, char *link);
 void					bigboy_algo(t_rooms **room_head);
 int						path_find(t_rooms **room_head);
 t_path					*generate_path(t_rooms *room_head);
-void					generate_moves(t_rooms **room_head);
+void					generate_moves(t_path *path, t_rooms **room_head);
+void					attack(t_ant **ants, t_rooms **rooms, int total);
+void					display_ants(t_ant *ant, t_rooms **rooms);
+void					execute(t_ant *curr_ant);
 
 /*
-**	t_path function
+**	t_path functions
 */
 
 void					path_correction(t_path **path);
@@ -166,6 +176,7 @@ void					match_room(t_rooms **head, char *room, char *link);
 void					init_links(t_content **file, t_rooms **head);
 void                	free_links(t_links **links);
 void					free_rooms(t_rooms **head);
+void					set_ants(t_rooms **rooms, t_content **content);
 
 
 void					print_rooms(t_rooms **head);		//debug

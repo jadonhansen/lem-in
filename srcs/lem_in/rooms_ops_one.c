@@ -24,7 +24,7 @@ static t_rooms		*create_node(char *line, int xcoord, int ycoord, int val)
 		node->y = ycoord;
 		node->links = NULL;
 		node->weight = 0;
-		node->occupied = 0;
+		node->ant_count = 0;
 		if (val == 1)
 		{
 			node->start = 1;
@@ -85,6 +85,18 @@ t_rooms		*init_rooms(t_rooms **head, char *s, int val)
 	return (*head);
 }
 
+void set_ants(t_rooms **rooms, t_content **content)
+{
+	t_rooms *temp;
+	t_content *file;
+
+	file = *content;
+	temp = *rooms;
+	while (temp && temp->start != 1)
+		temp = temp->next;
+	temp->ant_count = ft_atol(file->content);
+}
+
 void		print_rooms(t_rooms **head)		//debugging
 {
 	t_rooms	*temp;
@@ -117,6 +129,8 @@ void		print_rooms(t_rooms **head)		//debugging
 			ft_putnbr_col_fd(BLUE, temp->y, 1);
 			ft_putstr("\nWeight:");
 			ft_putnbr_col_fd(RED, temp->weight, 1);
+			ft_putstr("\nNum of ants:");
+			ft_putnbr_col_fd(RED, temp->ant_count, 1);
 			ft_putchar('\n');
 			if (temp->start == 1)
 			{

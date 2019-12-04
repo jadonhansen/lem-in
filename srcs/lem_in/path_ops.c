@@ -78,7 +78,7 @@ void		free_path(t_path **path)
 	}
 }
 
-void	print_path(t_path **path)	//debugging
+void	print_path(t_path **path)	//for debugging
 {
 	t_path	*temp;
 
