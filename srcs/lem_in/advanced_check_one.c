@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   advanced_check_one.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <jhansen@student.wethinkcode.co    +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 12:45:52 by jhansen           #+#    #+#             */
-/*   Updated: 2019/10/06 12:25:59 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/12/04 13:42:10 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ int			is_endstart(t_rooms **head)
 		temp = temp->next;
 	}
 	if (flag == 2)
-	{
-		ft_putendl_col_fd(RED, "Done end start room check", 1);		//
 		return (1);
-	}
 	error_out(NO_START_OR_END);
 	return (0);
 }
@@ -128,10 +125,8 @@ int		advanced_check_and_fill(t_content **file, t_rooms **head)
 	if (check_for_ant(file) && check_for_link(file))
 	{
 		*head = filler(file, head);
-		ft_putendl_col_fd(RED, "Filled room struct", 1);		//
 		if (head && duplicate_rooms(head) && is_endstart(head) && duplicate_link(file))
 		{
-			ft_putendl_col_fd(RED, "DONE MAIN CHECKS", 1);		//
 			if (*head && existing_room(file, head))
 			{
 				init_links(file, head);

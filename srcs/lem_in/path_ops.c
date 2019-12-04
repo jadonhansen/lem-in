@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_ops.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <jhansen@student.wethinkcode.co    +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 13:24:34 by jhansen           #+#    #+#             */
-/*   Updated: 2019/10/06 14:05:43 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/12/04 13:45:11 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,5 @@ void		free_path(t_path **path)
 			*path = next;
 		}
 		*path = NULL;
-	}
-}
-
-void	print_path(t_path **path)	//for debugging
-{
-	t_path	*temp;
-
-	temp = *path;
-	ft_putchar('\n');
-	while (temp)
-	{
-		ft_putstr_col_fd(YELLOW, "Room name: ", 1);
-		ft_putstr_col_fd(CYAN, temp->name, 1);
-		ft_putstr("\n\n");
-		temp = temp->next;
 	}
 }

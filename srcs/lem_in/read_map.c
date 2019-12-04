@@ -6,7 +6,7 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 16:15:37 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/19 11:05:29 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/12/04 13:45:31 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void		check_line(char *line, t_content **file)
 	if (status == 0)
 		free_content_error(file, BAD_INPUT);
 	line = whitespace_remover(line, status, file);
-	ft_putendl_col_fd(YELLOW, line, 1);					//
 	(*file) = init_content(file, line);
 	free(line);
 }

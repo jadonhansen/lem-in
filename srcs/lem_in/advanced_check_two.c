@@ -6,7 +6,7 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:09:04 by jhansen           #+#    #+#             */
-/*   Updated: 2019/09/18 14:37:45 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/12/04 13:50:00 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int			duplicate_rooms(t_rooms **rooms)
 		}
 		temp = temp->next;
 	}
-	ft_putendl_col_fd(RED, "Done dup room check", 1);
 	return (1);
 }
 
@@ -93,7 +92,6 @@ int			duplicate_link(t_content **file)
 		}
 		temp = temp->next;
 	}
-	ft_putendl_col_fd(RED, "Done dup link check", 1);
 	return (1);
 }
 
