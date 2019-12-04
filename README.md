@@ -15,4 +15,4 @@ This project requires SDL for visualizing. You can run the provided `bootstrap.s
 
 ### Team Member
 This project was completed in collaboration with:
-- [jhansen](https://github.com/jadonhansen)
+- [Calvin Diogo](https://github.com/CharlieDeltaZA)
