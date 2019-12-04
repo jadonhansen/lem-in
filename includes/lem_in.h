@@ -6,7 +6,7 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 08:40:20 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/12/04 11:40:39 by jhansen          ###   ########.fr       */
+/*   Updated: 2019/12/04 13:57:35 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "../libft/libft.h"
 # define MAX 2147483647
 # define MIN -2147483648
-
-# include <stdio.h>		//DEBUGGING
 
 /*
 ** Macros
@@ -177,9 +175,5 @@ void					init_links(t_content **file, t_rooms **head);
 void                	free_links(t_links **links);
 void					free_rooms(t_rooms **head);
 void					set_ants(t_rooms **rooms, t_content **content);
-
-
-void					print_rooms(t_rooms **head);		//debug
-void					print_path(t_path **path);			//debug
 
 #endif
