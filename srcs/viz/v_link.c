@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   v_link.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 11:01:45 by bmarks            #+#    #+#             */
-/*   Updated: 2019/09/20 12:22:43 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/14 11:36:32 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lem_in2.h>
+#include "../../includes/lem_in2.h"
+
+/*
+** Creates and returns a new link
+*/
 
 t_links	*new_link(t_room *room, char *name)
 {
@@ -24,6 +28,10 @@ t_links	*new_link(t_room *room, char *name)
 	new->next = NULL;
 	return (new);
 }
+
+/*
+** Adds a new link to the list
+*/
 
 void	add_link(t_room **room, char *name1, char *name2)
 {
@@ -51,6 +59,10 @@ void	add_link(t_room **room, char *name1, char *name2)
 		tmp_link->next = new_link((*room), name2);
 	}
 }
+
+/*
+** Frees the list of links
+*/
 
 void	free_links(t_links **link)
 {

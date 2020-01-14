@@ -6,7 +6,7 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 08:40:20 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/12/04 13:57:35 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 14:11:22 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,28 @@
 # define LEM_IN_H
 
 # include "../libft/libft.h"
-# define MAX 2147483647
-# define MIN -2147483648
 
 /*
 ** Macros
 */
+
+# define MAX 2147483647
+# define MIN -2147483648
+
+# define ERRNOANT {error_out(NO_ANTS);return (0);}
+# define ERR2ANT {error_out(TOO_MANY_ANTS);return (0);}
+# define ERRDUPLINK {error_out(DUP_LINK);return (0);}
+# define STARTEND {start = find_start(room_head);end = start;}
+# define QQ {temp->room->weight = queue->room->weight + 1;}
+# define QADD {queue_add(queue, temp->room);QQ}
+# define MSG1 "ERROR : No start OR end room has been found"
+# define MSG2 "ERROR : Undefined. (This may mean several things. "
+# define MSG22 "Please consult the map guidelines.)"
+# define READMAPVARS {count = 0;rooms = NULL;file = NULL;}
+# define LINEOPS {check_line(line, &file);free(line);}
+# define START_NODE {node->start = 1;node->end = 0;}
+# define END_NODE {node->start = 0;node->end = 1;}
+# define NODE {node->start = 0;node->end = 0;}
 
 enum					e_error_codes
 {
@@ -38,7 +54,8 @@ enum					e_error_codes
 	NON_EXISTING_ROOM,
 	TOO_MANY_ANTS,
 	NO_LINK,
-	PATH_ERROR
+	PATH_ERROR,
+	UNDEFINED
 };
 
 typedef struct			s_content
@@ -96,13 +113,15 @@ void					check_line(char *line, t_content **file);
 int						word_manager(char *line, int words);
 int						word_count(char *str);
 int						is_command(char *line);
+int						bad_command(char *line);
 int						is_comment(char *line);
 int						is_room(char *line);
 int						is_link(char *line);
 int						is_ant(char *line);
 int						all_digits_check(char *str);
 int						dash_check(char *str);
-char					*whitespace_remover(char *str, int type, t_content **file);
+char					*whitespace_remover(char *str, int type,
+												t_content **file);
 
 /*
 **	Erroring
@@ -116,7 +135,8 @@ void					error_out(int code);
 **	Advanced Error Checking
 */
 
-int						advanced_check_and_fill(t_content **file, t_rooms **head);
+int						advanced_check_and_fill(t_content **file,
+												t_rooms **head);
 int						check_for_ant(t_content **head);
 int						duplicate_rooms(t_rooms **rooms);
 int						double_check(char *current, char *temp);
@@ -172,8 +192,14 @@ t_rooms					*init_rooms(t_rooms **head, char *s, int val);
 t_rooms					*find_room(t_rooms *room, char *name);
 void					match_room(t_rooms **head, char *room, char *link);
 void					init_links(t_content **file, t_rooms **head);
-void                	free_links(t_links **links);
+void					free_links(t_links **links);
 void					free_rooms(t_rooms **head);
 void					set_ants(t_rooms **rooms, t_content **content);
+
+/*
+** debug function
+*/
+
+void					print_rooms(t_rooms **head);
 
 #endif

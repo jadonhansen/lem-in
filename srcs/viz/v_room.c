@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   v_room.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:45:12 by ctaljaar          #+#    #+#             */
-/*   Updated: 2019/09/20 12:22:34 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/14 11:42:03 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lem_in2.h>
+#include "../../includes/lem_in2.h"
+
+/*
+** Creates and returns a new room
+*/
 
 t_room	*new_room(char **info, int type)
 {
@@ -29,6 +33,10 @@ t_room	*new_room(char **info, int type)
 	new->next = NULL;
 	return (new);
 }
+
+/*
+** Adds a new room to the list
+*/
 
 t_room	*add_room(t_room **room, char **info, int type)
 {
@@ -55,6 +63,10 @@ t_room	*add_room(t_room **room, char **info, int type)
 	return (*room);
 }
 
+/*
+** Frees the content of rooms list
+*/
+
 void	free_rooms(t_room **room)
 {
 	t_room *next;
@@ -70,6 +82,10 @@ void	free_rooms(t_room **room)
 	*room = NULL;
 }
 
+/*
+** Finds the node that contains the start room
+*/
+
 t_room	*find_start(t_room **rooms)
 {
 	t_room *tmp;
@@ -79,6 +95,10 @@ t_room	*find_start(t_room **rooms)
 		tmp = tmp->next;
 	return (tmp);
 }
+
+/*
+** Swaps rooms around to get them in order
+*/
 
 void	room_swap(t_room **rooms)
 {

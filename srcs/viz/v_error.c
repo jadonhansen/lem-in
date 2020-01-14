@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   v_error.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 20:52:14 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/20 09:59:50 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:18:44 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <viz.h>
+#include "../../includes/viz.h"
 
 /*
 ** Frees everything in the viz struct, before freeing the struct itself

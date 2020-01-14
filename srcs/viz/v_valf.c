@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   v_valf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:30:24 by bmarks            #+#    #+#             */
-/*   Updated: 2019/09/20 12:22:14 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/14 11:53:22 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lem_in2.h>
+#include "../../includes/lem_in2.h"
+
+/*
+** Sets a total ant count into the structs
+*/
 
 void	set_ants(char **mappy, t_room **rooms)
 {
@@ -25,6 +29,10 @@ void	set_ants(char **mappy, t_room **rooms)
 		i++;
 	tmp->ant_count = ft_atoi(mappy[i]);
 }
+
+/*
+** Validates ant are included in the map
+*/
 
 void	val_ants(char *s, char **mappy, t_room **room)
 {
@@ -43,7 +51,7 @@ void	val_ants(char *s, char **mappy, t_room **room)
 	}
 	else
 	{
-		ants = ft_itoa(ft_atoi(s));	
+		ants = ft_itoa(ft_atoi(s));
 		if (ft_strcmp(ants, s) != 0)
 			NO_ANTS;
 		if (ft_atoi(s) < 0)
@@ -52,6 +60,10 @@ void	val_ants(char *s, char **mappy, t_room **room)
 		ft_strdel(&ants);
 	}
 }
+
+/*
+** Validates rooms from the map
+*/
 
 t_room	*val_room(char *s, char **mappy, int type, t_room **room)
 {
@@ -76,6 +88,10 @@ t_room	*val_room(char *s, char **mappy, int type, t_room **room)
 	return (*room);
 }
 
+/*
+** Checks links from the map
+*/
+
 void	link_check(char **link, t_room **room)
 {
 	t_room	*tmp;
@@ -94,6 +110,10 @@ void	link_check(char **link, t_room **room)
 	i = ft_strequ(link[1], tmp->name) ? i + 1 : i;
 	i != 2 ? (MISLINK) : NULL;
 }
+
+/*
+** Validates links from the map
+*/
 
 void	val_link(char *s, char **mappy, t_room **room)
 {

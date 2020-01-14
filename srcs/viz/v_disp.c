@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   v_disp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 11:01:33 by bmarks            #+#    #+#             */
-/*   Updated: 2019/09/20 12:22:49 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/14 11:56:40 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lem_in2.h>
+#include "../../includes/lem_in2.h"
+
+/*
+** Prints out the map provided as input
+*/
 
 void		disp_map(char **map)
 {
@@ -27,6 +31,10 @@ void		disp_map(char **map)
 	ft_putstr("\n");
 }
 
+/*
+** Formats the move to be printed
+*/
+
 static void	insfn(t_ant *ant)
 {
 	ft_putchar('L');
@@ -35,6 +43,10 @@ static void	insfn(t_ant *ant)
 	ant->path = ant->path->next_room;
 	ant->curr_room = ant->path->room_name;
 }
+
+/*
+** Prints the current move to the terminal
+*/
 
 void		disp_ants(t_ant *ant, t_room **rooms)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   v_moves.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 15:59:29 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/20 10:21:47 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:19:59 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <viz.h>
+#include "../../includes/viz.h"
 
 /*
 ** Creates a node and returns it
@@ -84,7 +84,7 @@ void			moves_free(t_moves **moves)
 		while (current)
 		{
 			next = current->next;
-			ft_freearray(current->move);
+			ft_free_array(current->move);
 			free(current);
 			current = next;
 		}

@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   v_traversal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 10:12:49 by bmarks            #+#    #+#             */
-/*   Updated: 2019/09/20 12:22:27 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/14 11:55:21 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lem_in2.h>
+#include "../../includes/lem_in2.h"
+
+/*
+** Prints the ant movements to the terminal
+*/
 
 static void	march(t_ant **ants, t_room **rooms)
 {
@@ -30,6 +34,10 @@ static void	march(t_ant **ants, t_room **rooms)
 		ft_putendl("");
 	}
 }
+
+/*
+** Handles printing all moves
+*/
 
 void		traversal(t_path *path, t_room **rooms)
 {
@@ -55,6 +63,10 @@ void		traversal(t_path *path, t_room **rooms)
 		free(ants[i++]);
 	free(ants);
 }
+
+/*
+** Finds a room by name and returns the node
+*/
 
 t_room		*find_room(t_room *room, char *name)
 {

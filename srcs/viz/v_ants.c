@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   v_ants.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 10:26:11 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/20 10:44:39 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:18:18 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <viz.h>
+#include "../../includes/viz.h"
 
 /*
 ** Creates a node and returns it

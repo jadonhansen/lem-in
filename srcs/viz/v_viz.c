@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   v_viz.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 12:17:02 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/20 09:58:20 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:20:44 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <viz.h>
+#include "../../includes/viz.h"
 
 /*
 ** Initializes the viz struct

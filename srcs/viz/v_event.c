@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   v_event.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 13:03:28 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/20 10:04:15 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:18:54 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <viz.h>
+#include "../../includes/viz.h"
 
 /*
 ** Looks for key input, for the purpose of closing the visualizer, executing

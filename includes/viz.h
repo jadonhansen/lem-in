@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   viz.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 09:51:11 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/20 12:16:09 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/14 10:43:25 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VIZ_H
 # define VIZ_H
 
-// # include "lem_in.h"
-// # include <lem_in.h>
-# include <SDL2/SDL.h>
-# include <SDL2/SDL_image.h>
-# include <SDL2/SDL_timer.h>
-# include <SDL2/SDL2_gfxPrimitives.h>
+# include "lem_in2.h"
+# include "/homes/jhansen/.brew/include/SDL2/SDL.h"
+# include "/homes/jhansen/.brew/include/SDL2/SDL_image.h"
+# include "/homes/jhansen/.brew/include/SDL2/SDL_timer.h"
+# include "/homes/jhansen/.brew/include/SDL2/SDL2_gfxPrimitives.h"
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -43,6 +42,9 @@
 # define DIMS_2 {DX DY ID}
 # define RE {SDL_RenderCopy(viz->rend, viz->ant, NULL, &dims); ant = ant->next;}
 # define R_NAME {r_name = ft_strchr(viz->curr_turn->move[i], '-'); r_name += 1;}
+# define UP_ANT {update_ant(ants, ant_id, r_name, info);free(ant_id);}
+# define PRINTPLUS {ft_putendl_col_fd(MAGENTA, "^^^ Complete", 1);i++;}
+# define UP_PLUS {UP_ANT PRINTPLUS}
 
 typedef struct		s_moves
 {

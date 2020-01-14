@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   v_path.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdiogo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:41:22 by bmarks            #+#    #+#             */
-/*   Updated: 2019/09/20 12:22:31 by cdiogo           ###   ########.fr       */
+/*   Updated: 2020/01/14 11:40:17 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lem_in2.h>
+#include "../../includes/lem_in2.h"
+
+/*
+** Frees the content of path list
+*/
 
 void	free_paths(t_path **path)
 {
@@ -28,6 +32,10 @@ void	free_paths(t_path **path)
 	*path = NULL;
 }
 
+/*
+** Creates and returns a new path
+*/
+
 t_path	*new_path(char *room_name)
 {
 	t_path *new;
@@ -38,6 +46,10 @@ t_path	*new_path(char *room_name)
 	new->next_room = NULL;
 	return (new);
 }
+
+/*
+** Adds a new path to the list
+*/
 
 t_path	*add_path(t_path **path, char *room_name)
 {
@@ -54,6 +66,10 @@ t_path	*add_path(t_path **path, char *room_name)
 	tmp->next_room = new_path(room_name);
 	return (*path);
 }
+
+/*
+** Determines the lenght of the pass
+*/
 
 size_t	path_length(t_path *path)
 {
