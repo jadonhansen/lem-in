@@ -6,11 +6,15 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 11:27:07 by jhansen           #+#    #+#             */
-/*   Updated: 2019/12/04 13:42:46 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 12:22:46 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** Moves and displays ants moves until all the ants are in the end room
+*/
 
 void		attack(t_ant **ants, t_rooms **rooms, int total)
 {
@@ -30,6 +34,11 @@ void		attack(t_ant **ants, t_rooms **rooms, int total)
 	}
 }
 
+/*
+** Gives all the ants in the ant struct their correct position,
+** number and next room to move to. Then executes
+*/
+
 void		generate_moves(t_path *path, t_rooms **room_head)
 {
 	t_ant	**ants;
@@ -40,8 +49,9 @@ void		generate_moves(t_path *path, t_rooms **room_head)
 	temp = find_start(room_head);
 	total = temp->ant_count;
 	i = 1;
-	if ((ants = (t_ant **)malloc(sizeof(t_ant *) * total))) {
-		while (i <= total) 
+	if ((ants = (t_ant **)malloc(sizeof(t_ant *) * total)))
+	{
+		while (i <= total)
 		{
 			ants[i - 1] = (t_ant *)malloc(sizeof(t_ant));
 			ants[i - 1]->ant_num = i;
@@ -56,6 +66,10 @@ void		generate_moves(t_path *path, t_rooms **room_head)
 		free(ants);
 	}
 }
+
+/*
+** Generates path struct now that the correct rooms have been given a weighting
+*/
 
 t_path		*generate_path(t_rooms *start)
 {
@@ -85,6 +99,11 @@ t_path		*generate_path(t_rooms *start)
 	return (path);
 }
 
+/*
+** Finds a correct path through the maze by adding a weight to each
+** room visited. If no path is found then error!
+*/
+
 int			path_find(t_rooms **room_head)
 {
 	t_rooms	*start;
@@ -92,8 +111,7 @@ int			path_find(t_rooms **room_head)
 	t_queue	*queue;
 	t_links	*temp;
 
-	start = find_start(room_head);
-	end = start;
+	STARTEND;
 	while (end->end != 1)
 		end = end->next;
 	queue = queue_node(start);
@@ -104,10 +122,7 @@ int			path_find(t_rooms **room_head)
 		while (temp)
 		{
 			if (temp->room->weight == 0)
-			{
-				queue_add(queue, temp->room);
-				temp->room->weight = queue->room->weight + 1;
-			}
+				QADD;
 			temp = temp->next;
 		}
 		queue_remove(&queue);

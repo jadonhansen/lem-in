@@ -6,11 +6,15 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 10:17:39 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/12/04 13:43:59 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 12:33:01 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** Checks if the line inputted is of command type
+*/
 
 int		is_command(char *line)
 {
@@ -21,11 +25,16 @@ int		is_command(char *line)
 		i++;
 	if (line[i] == '#' && line[i + 1] == '#')
 	{
-		if (ft_str_contain("##start", &line[i]) || ft_str_contain("##end", &line[i]))
+		if (ft_str_contain("##start", &line[i])
+			|| ft_str_contain("##end", &line[i]))
 			return (1);
 	}
 	return (0);
 }
+
+/*
+** Checks if the line inputted is of comment type
+*/
 
 int		is_comment(char *line)
 {
@@ -39,6 +48,10 @@ int		is_comment(char *line)
 	return (0);
 }
 
+/*
+** Checks if the line inputted is of link type
+*/
+
 int		is_link(char *line)
 {
 	int	i;
@@ -50,6 +63,10 @@ int		is_link(char *line)
 		return (1);
 	return (0);
 }
+
+/*
+** Checks if the line inputted is of ant type
+*/
 
 int		is_ant(char *line)
 {
@@ -70,6 +87,10 @@ int		is_ant(char *line)
 	}
 	return (1);
 }
+
+/*
+** Checks if the line inputted is of room type
+*/
 
 int		is_room(char *line)
 {

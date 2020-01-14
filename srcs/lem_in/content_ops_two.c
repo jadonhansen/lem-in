@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   content_ops_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 15:42:14 by jhansen           #+#    #+#             */
-/*   Updated: 2019/09/03 17:09:27 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 12:33:44 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** Creates a copy of the line given without any whitespace around it
+*/
 
 char	*whitespace_rooms(char *str)
 {
@@ -34,6 +38,11 @@ char	*whitespace_rooms(char *str)
 	line[j] = '\0';
 	return (line);
 }
+
+/*
+** Creates a copy of the line given without any whitespace around
+** it BUT with any length of string given
+*/
 
 char	*whitespace_else(char *str)
 {
@@ -60,6 +69,10 @@ char	*whitespace_else(char *str)
 	line[++j] = '\0';
 	return (line);
 }
+
+/*
+** Manages removal of whitespace
+*/
 
 char	*whitespace_remover(char *str, int type, t_content **file)
 {

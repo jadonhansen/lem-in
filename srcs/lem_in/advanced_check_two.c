@@ -6,11 +6,15 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:09:04 by jhansen           #+#    #+#             */
-/*   Updated: 2019/12/04 13:50:00 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 12:32:39 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** Checks for duplicate room names and co-ordinates
+*/
 
 int			duplicate_rooms(t_rooms **rooms)
 {
@@ -41,6 +45,11 @@ int			duplicate_rooms(t_rooms **rooms)
 	return (1);
 }
 
+/*
+** Checks that there are no duplicate links OR REVERSE duplicate links
+** (e.g. 1-2 and 2-1)
+*/
+
 int			double_check(char *current, char *temp)
 {
 	char	**one;
@@ -64,6 +73,10 @@ int			double_check(char *current, char *temp)
 	return (1);
 }
 
+/*
+** Checks that there are no duplicate links
+*/
+
 int			duplicate_link(t_content **file)
 {
 	t_content	*temp;
@@ -79,13 +92,11 @@ int			duplicate_link(t_content **file)
 				current = temp->next;
 			while (current != NULL)
 			{
-				if ((word_count(current->content) == 1) && is_link(current->content))
+				if ((word_count(current->content) == 1)
+						&& is_link(current->content))
 				{
 					if (double_check(temp->content, current->content) == 0)
-					{
-						error_out(DUP_LINK);
-						return (0);
-					}
+						ERRDUPLINK;
 				}
 				current = current->next;
 			}
@@ -94,6 +105,10 @@ int			duplicate_link(t_content **file)
 	}
 	return (1);
 }
+
+/*
+** Checks that the room on each side the '-' in the link is an existing room
+*/
 
 int			cross_check(t_rooms **head, char *s)
 {
@@ -117,6 +132,10 @@ int			cross_check(t_rooms **head, char *s)
 		return (1);
 	return (0);
 }
+
+/*
+** Checks that a link refers to an actual room
+*/
 
 int			existing_room(t_content **file, t_rooms **head)
 {

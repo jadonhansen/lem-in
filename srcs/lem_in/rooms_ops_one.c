@@ -6,18 +6,21 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 12:20:31 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/12/04 13:45:53 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 12:35:02 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
 
+/*
+** Creates room node from relevant data
+*/
+
 static t_rooms		*create_node(char *line, int xcoord, int ycoord, int val)
 {
 	t_rooms	*node;
 
-	node = (t_rooms*)malloc(sizeof(t_rooms));
-	if (node)
+	if ((node = (t_rooms*)malloc(sizeof(t_rooms))))
 	{
 		node->name = line;
 		node->x = xcoord;
@@ -27,24 +30,23 @@ static t_rooms		*create_node(char *line, int xcoord, int ycoord, int val)
 		node->ant_count = 0;
 		if (val == 1)
 		{
-			node->start = 1;
-			node->end = 0;
+			START_NODE;
 		}
 		else if (val == 2)
 		{
-			node->start = 0;
-			node->end = 1;			
+			END_NODE;
 		}
 		else
-		{
-			node->start = 0;
-			node->end = 0;			
-		}
+			NODE;
 		node->prev = NULL;
 		node->next = NULL;
 	}
 	return (node);
 }
+
+/*
+** Adds room to the bottom of the room struct
+*/
 
 static void			add_tail(t_rooms **head, t_rooms *node)
 {
@@ -62,7 +64,12 @@ static void			add_tail(t_rooms **head, t_rooms *node)
 	}
 }
 
-t_rooms		*init_rooms(t_rooms **head, char *s, int val)
+/*
+** Manages the creation of the room nodes. Retrieves relevant data
+** from each line passed as *s
+*/
+
+t_rooms				*init_rooms(t_rooms **head, char *s, int val)
 {
 	t_rooms	*node;
 	char	**arr;
@@ -85,10 +92,14 @@ t_rooms		*init_rooms(t_rooms **head, char *s, int val)
 	return (*head);
 }
 
-void set_ants(t_rooms **rooms, t_content **content)
+/*
+** Puts all ants in the starting room
+*/
+
+void				set_ants(t_rooms **rooms, t_content **content)
 {
-	t_rooms *temp;
-	t_content *file;
+	t_rooms		*temp;
+	t_content	*file;
 
 	file = *content;
 	temp = *rooms;

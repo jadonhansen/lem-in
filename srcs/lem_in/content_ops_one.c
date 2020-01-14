@@ -6,11 +6,15 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 12:21:07 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/09/19 11:30:17 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 11:57:15 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** Creates content node with the line passed to it
+*/
 
 static t_content	*create_node(char *line)
 {
@@ -24,6 +28,10 @@ static t_content	*create_node(char *line)
 	}
 	return (node);
 }
+
+/*
+** Adds node to the bottom of the content struct
+*/
 
 static void			add_tail(t_content **head, t_content *node)
 {
@@ -40,6 +48,10 @@ static void			add_tail(t_content **head, t_content *node)
 	}
 }
 
+/*
+** Manages the creation of content struct
+*/
+
 t_content			*init_content(t_content **file, char *line)
 {
 	t_content	*node;
@@ -55,6 +67,10 @@ t_content			*init_content(t_content **file, char *line)
 		head = create_node(line);
 	return (head);
 }
+
+/*
+** Prints the cleaned up and proper version (content struct) of the passed file
+*/
 
 void				print_content(t_content **head)
 {

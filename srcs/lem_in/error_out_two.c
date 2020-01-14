@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   error_out_two.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <jhansen@student.wethinkcode.co    +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:08:43 by jhansen           #+#    #+#             */
-/*   Updated: 2019/10/04 23:48:26 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 11:44:56 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** An error case function. Free's room struct and quits
+*/
 
 void	free_rooms_error(t_rooms **node, int msg)
 {
@@ -19,7 +23,11 @@ void	free_rooms_error(t_rooms **node, int msg)
 	exit(1);
 }
 
-void                free_links(t_links **links)
+/*
+** Free's link struct
+*/
+
+void	free_links(t_links **links)
 {
 	t_links	*temp;
 	t_links	*next;
@@ -33,13 +41,17 @@ void                free_links(t_links **links)
 			next = temp->next;
 			free(temp->name);
 			free(temp);
-            temp = next;
+			temp = next;
 		}
 		*links = NULL;
 	}
 }
 
-void				free_rooms(t_rooms **head)
+/*
+** Free's room struct
+*/
+
+void	free_rooms(t_rooms **head)
 {
 	t_rooms	*temp;
 	t_rooms	*next;

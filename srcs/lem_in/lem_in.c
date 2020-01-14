@@ -6,11 +6,15 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 16:19:08 by cdiogo            #+#    #+#             */
-/*   Updated: 2019/12/04 13:46:15 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 10:57:29 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** Manages all algo operations once validation is complete
+*/
 
 void	bigboy_algo(t_rooms **room_head)
 {
@@ -33,6 +37,5 @@ int		main(void)
 	rooms = read_map();
 	bigboy_algo(&rooms);
 	free_rooms(&rooms);
-	// while(1);					//tests for leaks at the end
 	return (0);
 }

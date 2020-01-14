@@ -6,11 +6,15 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 13:24:34 by jhansen           #+#    #+#             */
-/*   Updated: 2019/12/04 13:45:11 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 12:34:13 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** Reverses path direction so that it can used to navigate with
+*/
 
 void		path_correction(t_path **path)
 {
@@ -30,6 +34,10 @@ void		path_correction(t_path **path)
 	*path = previous;
 }
 
+/*
+** Creates path node from room name
+*/
+
 t_path		*create_node(char *name)
 {
 	t_path	*node;
@@ -43,6 +51,10 @@ t_path		*create_node(char *name)
 	}
 	return (NULL);
 }
+
+/*
+** Adds path node to the struct
+*/
 
 void		add_path(t_path **path, char *room)
 {
@@ -60,6 +72,10 @@ void		add_path(t_path **path, char *room)
 	else
 		*path = create_node(room);
 }
+
+/*
+** Free's struct
+*/
 
 void		free_path(t_path **path)
 {

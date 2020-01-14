@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   rooms_ops_two.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <jhansen@student.wethinkcode.co    +#+  +:+       +#+        */
+/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:15:28 by jhansen           #+#    #+#             */
-/*   Updated: 2019/10/06 13:54:42 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/14 12:35:17 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lem_in.h"
+
+/*
+** Finds a specific room inside the room struct
+*/
 
 t_rooms				*find_room(t_rooms *room, char *name)
 {
@@ -23,7 +27,11 @@ t_rooms				*find_room(t_rooms *room, char *name)
 	return (room);
 }
 
-int				dup_link_check(t_links **head, char *link)
+/*
+** Checks that a link is not already found in a room's link struct
+*/
+
+int					dup_link_check(t_links **head, char *link)
 {
 	t_links	*temp;
 
@@ -40,6 +48,10 @@ int				dup_link_check(t_links **head, char *link)
 	return (0);
 }
 
+/*
+** Creates link node
+*/
+
 static t_links		*create_node(t_rooms *room, char *line)
 {
 	t_links	*node;
@@ -54,7 +66,12 @@ static t_links		*create_node(t_rooms *room, char *line)
 	return (node);
 }
 
-void			match_room(t_rooms **head, char *room, char *link)
+/*
+** Takes one link and links it to the corresponding room by
+** adding it the rooms link struct. Runs a duplicate check as well
+*/
+
+void				match_room(t_rooms **head, char *room, char *link)
 {
 	t_rooms	*node;
 	t_links	*tmp_link;
@@ -79,7 +96,12 @@ void			match_room(t_rooms **head, char *room, char *link)
 	}
 }
 
-void			init_links(t_content **file, t_rooms **head)
+/*
+** Takes all link type lines and manages the linking of each
+** link to the correct room
+*/
+
+void				init_links(t_content **file, t_rooms **head)
 {
 	t_content	*temp;
 	char		**arr;
