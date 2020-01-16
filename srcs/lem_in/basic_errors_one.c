@@ -6,7 +6,7 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 10:17:39 by cdiogo            #+#    #+#             */
-/*   Updated: 2020/01/14 12:33:01 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/16 14:40:55 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,10 @@ int		is_ant(char *line)
 	{
 		while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
 			i++;
-		while (line[i] != '\0' && line[i] != ' ' && line[i] != '\t')
+		while (line[i] != '\0')
 		{
-			if (line[i] >= '0' && line[i] <= '9' && line[i] != '\0')
+			if (line[i] >= '0' && line[i] <= '9' && line[i] != '\0'
+				&& line[i] != ' ' && line[i] != '\t')
 				i++;
 			else
 				return (0);

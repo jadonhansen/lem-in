@@ -1,0 +1,25 @@
+room 16 7
+##start
+start 23 3
+#comment
+memes 16 3
+gang 16 5
+society 9 3
+asuh 1 5
+running 4 8
+##end
+end 9 5
+end-gang
+end-asuh
+start-memes
+gang-memes
+society-room
+memes-society
+# another comment
+gang-room
+room-start
+running-asuh
+running-room
+running-gang
+asuh-society
+#another comment

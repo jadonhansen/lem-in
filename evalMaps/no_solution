@@ -1,0 +1,12 @@
+5
+##start
+start 50 100
+middle 555 63
+#comment
+middletoo 16 3
+##end
+end 95 57
+# another comment
+start-middletoo
+end-middle
+#another comment

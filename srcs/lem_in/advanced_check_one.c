@@ -6,7 +6,7 @@
 /*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 12:45:52 by jhansen           #+#    #+#             */
-/*   Updated: 2020/01/14 11:59:52 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/16 14:17:55 by jhansen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			check_for_ant(t_content **head)
 		{
 			num = ft_atol(temp->content);
 			if (num > MAX || num < MIN)
-				return (0);
+				ANT_MAX;
 			while (node->next != NULL)
 			{
 				node = node->next;
