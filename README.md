@@ -2,10 +2,10 @@
 
 ### Score TBD/100
 #### Mandatory
-TBD/100
+100/100
 
 #### Bonus
-TBD/25
+25/25
 
 #### Project Overview:
 Summary: This project revolves around an ant farm. The algorithm will find the shortest path for the ants to follow to reach the end room from the start room.
@@ -19,4 +19,4 @@ If you plan on running this on a personal machine, install brew according to the
 
 ### Team Member
 This project was completed in collaboration with:
-- [jhansen](https://github.com/jadonhansen)
+- [Calvin Diogo](https://github.com/CharlieDeltaZA)
