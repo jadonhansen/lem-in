@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   viz.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhansen <jhansen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cdiogo <cdiogo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 09:51:11 by cdiogo            #+#    #+#             */
-/*   Updated: 2020/01/16 14:26:21 by jhansen          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:14:18 by cdiogo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,10 @@
 # define VIZ_H
 
 # include "lem_in2.h"
-// # include "/homes/cdiogo/.brew/include/SDL2/SDL.h"
-// # include "/homes/cdiogo/.brew/include/SDL2/SDL_image.h"
-// # include "/homes/cdiogo/.brew/include/SDL2/SDL_timer.h"
-// # include "/homes/cdiogo/.brew/include/SDL2/SDL2_gfxPrimitives.h"
-
-# include "/homes/jhansen/.brew/include/SDL2/SDL.h"
-# include "/homes/jhansen/.brew/include/SDL2/SDL_image.h"
-# include "/homes/jhansen/.brew/include/SDL2/SDL_timer.h"
-# include "/homes/jhansen/.brew/include/SDL2/SDL2_gfxPrimitives.h"
+# include "/homes/cdiogo/.brew/include/SDL2/SDL.h"
+# include "/homes/cdiogo/.brew/include/SDL2/SDL_image.h"
+# include "/homes/cdiogo/.brew/include/SDL2/SDL_timer.h"
+# include "/homes/cdiogo/.brew/include/SDL2/SDL2_gfxPrimitives.h"
 
 # define WIDTH 1920
 # define HEIGHT 1080
